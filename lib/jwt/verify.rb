@@ -65,8 +65,6 @@ module JWT
       if options_verify_jti.respond_to?(:call)
         verified = options_verify_jti.arity == 2 ? options_verify_jti.call(jti, @payload) : options_verify_jti.call(jti)
         raise(JWT::InvalidJtiError, 'Invalid jti') unless verified
-      elsif jti.to_s.strip.empty?
-        raise(JWT::InvalidJtiError, 'Missing jti')
       end
     end
 
